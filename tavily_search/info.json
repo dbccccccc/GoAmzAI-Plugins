@@ -1,0 +1,102 @@
+{
+  "id": "tavily_search",
+  "name": "Tavily联网查询",
+  "version": "2.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-search",
+  "setting": [
+    {
+      "field": "api_key",
+      "label": "Tavily API密钥",
+      "tips": "您的Tavily API密钥。请访问 https://www.tavily.com 注册账号并获取API密钥。"
+    },
+    {
+      "field": "search_depth",
+      "label": "搜索深度",
+      "tips": "搜索的深度级别。basic（基础）搜索消耗1个API点数，advanced（高级）搜索消耗2个API点数。advanced搜索会提供更全面和深入的结果。",
+      "default": "basic"
+    },
+    {
+      "field": "max_results",
+      "label": "最大返回结果数",
+      "tips": "每次搜索返回的最大结果数量。取值范围：1-20，默认为5。",
+      "default": "5"
+    },
+    {
+      "field": "include_answer",
+      "label": "包含AI答案",
+      "tips": "是否在搜索结果中包含AI生成的答案。设置为true时，API会使用LLM生成一个针对查询的简短回答。此功能会略微增加响应时间。",
+      "default": "false"
+    },
+    {
+      "field": "include_raw_content",
+      "label": "包含原始内容",
+      "tips": "是否包含每个搜索结果的清理和解析后的HTML内容。设置为true时，每个结果将包含完整的网页内容。",
+      "default": "false"
+    },
+    {
+      "field": "include_images",
+      "label": "包含相关图片",
+      "tips": "图片包含策略：auto（自动）、never（从不包含）、always（始终包含）",
+      "default": "auto",
+      "enum": ["auto", "never", "always"]
+    },
+    {
+      "field": "include_image_descriptions",
+      "label": "包含图片描述",
+      "tips": "是否包含图片的AI生成描述。仅在包含图片时生效。",
+      "default": "false"
+    },
+    {
+      "field": "include_domains",
+      "label": "包含域名列表",
+      "tips": "指定要包含在搜索结果中的域名列表。多个域名用逗号分隔，例如：example.com,test.com。设置此参数可以设置搜索结果来源网站。"
+    },
+    {
+      "field": "exclude_domains",
+      "label": "排除域名列表",
+      "tips": "指定要从搜索结果中排除的域名列表。多个域名用逗号分隔，例如：example.com,test.com。设置此参数可以过滤掉特定网站的结果。"
+    }
+  ],
+  "functions": [
+    {
+      "name": "tavily_search",
+      "description": "使用Tavily搜索引擎查询用户输入的问题",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "搜索关键词"
+          },
+          "language": {
+            "type": "string",
+            "description": "搜索结果语言代码，如en（英语）、zh-CN（简体中文）、ja（日语）等"
+          },
+          "topic": {
+            "type": "string",
+            "description": "搜索主题类型：general（通用）或 news（新闻优先）",
+            "enum": ["general", "news"]
+          },
+          "time_range": {
+            "type": "string",
+            "description": "时间范围限制：day（24小时）、week（一周）、month（一月）、year（一年）",
+            "enum": ["day", "week", "month", "year"]
+          },
+          "include_images": {
+            "type": "boolean",
+            "description": "是否包含相关图片。仅在settings.include_images为auto时生效。"
+          },
+          "include_image_descriptions": {
+            "type": "boolean",
+            "description": "是否包含图片的AI生成描述，仅在包含图片时生效"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+}

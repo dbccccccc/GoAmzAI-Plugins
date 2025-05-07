@@ -1,0 +1,68 @@
+{
+  "id": "pollinations_image",
+  "name": "AI图像生成",
+  "version": "1.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-image",
+  "setting": [
+    {
+      "field": "default_width",
+      "label": "默认宽度",
+      "tips": "生成图像的默认宽度。如果设置了此值则始终使用此值，否则使用LLM提供的值",
+      "default": ""
+    },
+    {
+      "field": "default_height",
+      "label": "默认高度",
+      "tips": "生成图像的默认高度。如果设置了此值则始终使用此值，否则使用LLM提供的值",
+      "default": ""
+    },
+    {
+      "field": "private",
+      "label": "私有模式",
+      "tips": "是否启用私有模式，设置为true则图像不会出现在公共源中，默认为true",
+      "default": "true"
+    },
+    {
+      "field": "enhance",
+      "label": "提示增强",
+      "tips": "是否启用提示增强（通过LLM添加详细信息），默认为false",
+      "default": "false"
+    },
+    {
+      "field": "safe",
+      "label": "安全模式",
+      "tips": "是否启用严格的NSFW内容过滤，默认为true",
+      "default": "true"
+    }
+  ],
+  "functions": [
+    {
+      "name": "generate_image",
+      "description": "根据文本描述生成AI图像",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "您想要生成的图像的文本描述"
+          },
+          "width": {
+            "type": "integer",
+            "description": "生成图像的宽度（如1024）"
+          },
+          "height": {
+            "type": "integer",
+            "description": "生成图像的高度（如1024）"
+          }
+        },
+        "required": [
+          "prompt"
+        ]
+      }
+    }
+  ]
+} 

@@ -1,0 +1,43 @@
+{
+  "id": "arxiv_search",
+  "name": "arXiv论文查找",
+  "version": "1.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-book",
+  "setting": [
+    {
+      "field": "max_results",
+      "label": "Maximum Results",
+      "tips": "返回论文的最大数量（默认：10，最大：100）"
+    }
+  ],
+  "functions": [
+    {
+      "name": "search_arxiv",
+      "description": "Search for academic papers on arXiv using various search criteria",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query string. Can include field-specific searches like 'ti:neural networks' for title search, 'au:smith' for author search, etc."
+          },
+          "sort_by": {
+            "type": "string",
+            "description": "Sort order for results. Options: 'relevance', 'lastUpdatedDate', 'submittedDate'",
+            "enum": ["relevance", "lastUpdatedDate", "submittedDate"]
+          },
+          "sort_order": {
+            "type": "string",
+            "description": "Sort direction. Options: 'ascending', 'descending'",
+            "enum": ["ascending", "descending"]
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+} 

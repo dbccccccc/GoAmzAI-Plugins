@@ -1,0 +1,55 @@
+{
+  "id": "bocha_search",
+  "name": "博查联网搜索",
+  "version": "1.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-search",
+  "setting": [
+    {
+      "field": "api_key",
+      "label": "博查 API密钥",
+      "tips": "您的博查API密钥。请访问 https://open.bochaai.com 获取您的API密钥。"
+    },
+    {
+      "field": "count",
+      "label": "返回结果数",
+      "tips": "返回结果的条数。取值范围：1-50，默认为10。",
+      "default": "10"
+    },
+    {
+      "field": "summary",
+      "label": "包含文本摘要",
+      "tips": "控制搜索结果是否包含详细文本摘要。auto（由LLM决定）、true（始终包含）、false（从不包含）。设置为true时，API将返回每个网页的详细摘要内容，而不仅是简短描述。",
+      "default": "auto",
+      "enum": ["auto", "true", "false"]
+    }
+  ],
+  "functions": [
+    {
+      "name": "bocha_search",
+      "description": "使用博查搜索引擎查询用户输入的问题",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "搜索关键词"
+          },
+          "freshness": {
+            "type": "string",
+            "description": "搜索时间范围：oneDay（一天内）、oneWeek（一周内）、oneMonth（一个月内）、oneYear（一年内）、noLimit（不限）",
+            "enum": ["oneDay", "oneWeek", "oneMonth", "oneYear", "noLimit"]
+          },
+          "summary": {
+            "type": "boolean",
+            "description": "是否显示文本摘要，设置为true时，每个结果将包含完整的网页内容摘要"
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+} 

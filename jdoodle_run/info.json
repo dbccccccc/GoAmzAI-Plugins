@@ -1,0 +1,46 @@
+{
+  "id": "jdoodle_run",
+  "name": "JDoodle代码执行",
+  "version": "1.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-code",
+  "setting": [
+    {
+      "field": "client_id",
+      "label": "Client ID",
+      "tips": "您的JDoodle Client ID。请访问 https://www.jdoodle.com/compiler-api/ 获取。"
+    },
+    {
+      "field": "client_secret",
+      "label": "Client Secret",
+      "tips": "您的JDoodle Client Secret。请访问 https://www.jdoodle.com/compiler-api/ 获取。"
+    }
+  ],
+  "functions": [
+    {
+      "name": "jdoodle_run",
+      "description": "使用JDoodle进行代码运行并得到结果",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "script": {
+            "type": "string",
+            "description": "要执行的代码"
+          },
+          "language": {
+            "type": "string",
+            "description": "编程语言，支持：python3, java, javascript, cpp, csharp, php, ruby, go, rust, swift, kotlin, typescript"
+          },
+          "stdin": {
+            "type": "string",
+            "description": "标准输入数据，用于交互式程序"
+          }
+        },
+        "required": ["script", "language"]
+      }
+    }
+  ]
+} 

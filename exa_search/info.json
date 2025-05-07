@@ -1,0 +1,70 @@
+{
+  "id": "exa_search",
+  "name": "Exa联网搜索",
+  "version": "1.0",
+  "lang": "",
+  "index": "index.js",
+  "models": null,
+  "type": "",
+  "icon": "fa fa-search",
+  "setting": [
+    {
+      "field": "api_key",
+      "label": "Exa API密钥",
+      "tips": "请从 https://docs.exa.ai/reference/search 获取您的API密钥"
+    },
+    {
+      "field": "num_results",
+      "label": "搜索结果数量",
+      "tips": "返回的搜索结果数量（默认：5，最大：100）",
+      "default": "5"
+    },
+    {
+      "field": "search_type",
+      "label": "搜索类型",
+      "tips": "选择搜索类型：auto（自动选择）、neural（基于词义）、keyword（关键词）",
+      "default": "auto"
+    },
+    {
+      "field": "include_domains",
+      "label": "包含域名",
+      "tips": "指定要包含的域名，多个域名用逗号分隔"
+    },
+    {
+      "field": "exclude_domains",
+      "label": "排除域名",
+      "tips": "指定要排除的域名，多个域名用逗号分隔"
+    }
+  ],
+  "functions": [
+    {
+      "name": "exa_search",
+      "description": "Perform web search using Exa API",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query to perform"
+          },
+          "category": {
+            "type": "string",
+            "description": "The category to filter results by (optional)",
+            "enum": [
+              "company",
+              "research paper",
+              "news",
+              "pdf",
+              "github",
+              "tweet",
+              "personal site",
+              "linkedin profile",
+              "financial report"
+            ]
+          }
+        },
+        "required": ["query"]
+      }
+    }
+  ]
+} 

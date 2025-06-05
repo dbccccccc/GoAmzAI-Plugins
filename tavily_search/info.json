@@ -1,7 +1,7 @@
 {
   "id": "tavily_search",
   "name": "Tavily联网查询",
-  "version": "2.0",
+  "version": "2.1",
   "lang": "",
   "index": "index.js",
   "models": null,
@@ -11,7 +11,7 @@
     {
       "field": "api_key",
       "label": "Tavily API密钥",
-      "tips": "您的Tavily API密钥。请访问 https://www.tavily.com 注册账号并获取API密钥。"
+      "tips": "您的Tavily API密钥。请访问 https://app.tavily.com 注册账号并获取API密钥。"
     },
     {
       "field": "search_depth",
@@ -24,6 +24,12 @@
       "label": "最大返回结果数",
       "tips": "每次搜索返回的最大结果数量。取值范围：1-20，默认为5。",
       "default": "5"
+    },
+    {
+      "field": "chunks_per_source",
+      "label": "每个来源的内容块数",
+      "tips": "每个搜索结果来源返回的内容块数量。取值范围：1-10，默认为3。更多块意味着更详细的内容。",
+      "default": "3"
     },
     {
       "field": "include_answer",
@@ -41,8 +47,7 @@
       "field": "include_images",
       "label": "包含相关图片",
       "tips": "图片包含策略：auto（自动）、never（从不包含）、always（始终包含）",
-      "default": "auto",
-      "enum": ["auto", "never", "always"]
+      "default": "auto"
     },
     {
       "field": "include_image_descriptions",
@@ -78,13 +83,19 @@
           },
           "topic": {
             "type": "string",
-            "description": "搜索主题类型：general（通用）或 news（新闻优先）",
-            "enum": ["general", "news"]
+            "description": "搜索主题类型：general（通用）或 news（新闻优先）"
           },
-          "time_range": {
+          "days": {
+            "type": "integer",
+            "description": "时间范围限制（天数）：1（24小时内）、7（一周内）、30（一月内）、365（一年内）等"
+          },
+          "country": {
             "type": "string",
-            "description": "时间范围限制：day（24小时）、week（一周）、month（一月）、year（一年）",
-            "enum": ["day", "week", "month", "year"]
+            "description": "搜索结果的国家/地区代码，如US、CN、JP等"
+          },
+          "chunks_per_source": {
+            "type": "integer",
+            "description": "每个来源返回的内容块数量，取值范围1-10"
           },
           "include_images": {
             "type": "boolean",
